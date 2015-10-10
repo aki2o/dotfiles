@@ -108,6 +108,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+source my-functions.sh
+
 export PATH=~/bin:${PATH}
 export PERL_BADLANG=0
 export PERL5LIB=~/lib/perl/lib:./lib:$PERL5LIB
@@ -125,3 +127,6 @@ eval "$(rbenv init -)"
 
 export PATH="$HOME/gibo:$PATH"
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
