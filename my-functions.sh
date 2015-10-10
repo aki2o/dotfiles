@@ -12,3 +12,6 @@ function my-rand-base64() {
     ruby -e "require 'securerandom'; print SecureRandom.base64($LENGTH)"
 }
 
+function my-self-global-ip() {
+    curl inet-ip.info
+}
