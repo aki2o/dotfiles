@@ -110,23 +110,39 @@ fi
 
 source my-functions.sh
 
+export LANG=ja_JP.UTF-8
 export PATH=~/bin:${PATH}
 export PERL_BADLANG=0
 export PERL5LIB=~/lib/perl/lib:./lib:$PERL5LIB
 export TMP=/tmp
 
-[ -s /home/hiroaki/.nvm/nvm.sh ] && . /home/hiroaki/.nvm/nvm.sh # This loads NVM
-source ~/perl5/perlbrew/etc/bashrc
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+
+# mozc
 alias mozc-config="/usr/lib/mozc/mozc_tool -mode=config_dialog"
 alias mozc-dict="/usr/lib/mozc/mozc_tool --mode=dictionary_tool"
 alias emacs="XMODIFIERS=@im=none emacs"
 
+# rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+[ -d "$HOME/.rbenv/bin" ] && eval "$(rbenv init -)"
 
+# gibo
 export PATH="$HOME/gibo:$PATH"
 
-
-### Added by the Heroku Toolbelt
+# heroku
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# direnv
+eval "$(direnv hook bash)"
+
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
