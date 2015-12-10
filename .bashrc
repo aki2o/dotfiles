@@ -146,3 +146,20 @@ if [ -d "${PYENV_ROOT}" ]; then
     export PATH=${PYENV_ROOT}/bin:$PATH
     eval "$(pyenv init -)"
 fi
+
+
+alias e="emacsclient"
+export EDITOR=emacsclient
+
+
+OS="UNKNOWN"
+if [ "$(uname)" == "Darwin" ]; then
+    OS="mac"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    OS="linux"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    OS="cygwin"
+fi
+
+[ -f ".bashrc_${OS}" ] && source .bashrc_${OS}
+
