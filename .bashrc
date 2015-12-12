@@ -96,10 +96,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -108,26 +105,18 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-source my-functions.sh
+
+alias e="emacsclient"
 
 export LANG=ja_JP.UTF-8
 export PATH=~/bin:${PATH}
-export PERL_BADLANG=0
-export PERL5LIB=~/lib/perl/lib:./lib:$PERL5LIB
 export TMP=/tmp
-
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
-
-[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+export EDITOR=emacsclient
 
 # mozc
 alias mozc-config="/usr/lib/mozc/mozc_tool -mode=config_dialog"
 alias mozc-dict="/usr/lib/mozc/mozc_tool --mode=dictionary_tool"
 alias emacs="XMODIFIERS=@im=none emacs"
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-[ -d "$HOME/.rbenv/bin" ] && eval "$(rbenv init -)"
 
 # gibo
 export PATH="$HOME/gibo:$PATH"
@@ -135,22 +124,41 @@ export PATH="$HOME/gibo:$PATH"
 # heroku
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # direnv
-eval "$(direnv hook bash)"
+[ -e direnv ] && eval "$(direnv hook bash)"
 
-# pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
+# perl
+export PERL_BADLANG=0
+export PERL5LIB="~/lib/perl/lib:./lib:$PERL5LIB"
+[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+
+# node
+[ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+
+# ruby
+if [ -d "$HOME/.rbenv" ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+# python
+export PYENV_ROOT="$HOME/.pyenv"
+if [ -d "$PYENV_ROOT" ]; then
+    export PATH="${PYENV_ROOT}/bin:$PATH"
     eval "$(pyenv init -)"
 fi
 
+# go
+export GOPATH="$HOME/.go"
+export PATH="${GOPATH}/bin:$PATH"
+if [ -d "$HOME/.goenv" ]; then
+    export PATH="$HOME/.goenv/bin:$PATH"
+    eval "$(goenv init -)"
+fi
 
-alias e="emacsclient"
-export EDITOR=emacsclient
-
+# include
+[ -f .bash-myfunc ] && source .bash-myfunc
 
 OS="UNKNOWN"
 if [ "$(uname)" == "Darwin" ]; then
@@ -161,5 +169,5 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     OS="cygwin"
 fi
 
-[ -f ".bashrc_${OS}" ] && source .bashrc_${OS}
+[ -f .bashrc_${OS} ] && source .bashrc_${OS}
 
