@@ -125,7 +125,7 @@ export PATH="$HOME/gibo:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # direnv
-[ -e direnv ] && eval "$(direnv hook bash)"
+[ "`which direnv`" != "" ] && eval "$(direnv hook bash)"
 
 # perl
 export PERL_BADLANG=0
