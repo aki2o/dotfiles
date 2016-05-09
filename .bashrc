@@ -129,12 +129,15 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # perl
 export PERL_BADLANG=0
-export PERL5LIB="~/lib/perl/lib:./lib:$PERL5LIB"
-[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
 if [ -d "$HOME/.plenv" ]; then
     export PATH="$HOME/.plenv/bin:$PATH"
     eval "$(plenv init -)"
+elif [ -f "$HOME/perl5/perlbrew/etc/bashrc" ]; then
+    source "$HOME/perl5/perlbrew/etc/bashrc"
+else
+    export PERL_CPANM_OPT="--local-lib=~/perl5"
+    export PERL5LIB="~/perl5/lib/perl5:$PERL5LIB"
 fi
 
 # node
