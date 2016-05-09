@@ -158,7 +158,7 @@ if [ -d "$HOME/.goenv" ]; then
 fi
 
 # include
-[ -f .bash-myfunc ] && source .bash-myfunc
+[ -f "$HOME/.bash-myfunc" ] && source "$HOME/.bash-myfunc"
 
 OS="UNKNOWN"
 if [ "$(uname)" == "Darwin" ]; then
@@ -169,5 +169,5 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     OS="cygwin"
 fi
 
-[ -f .bashrc_${OS} ] && source .bashrc_${OS}
+[ -f "$HOME/.bashrc_${OS}" ] && source "$HOME/.bashrc_${OS}"
 
