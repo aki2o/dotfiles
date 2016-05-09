@@ -132,6 +132,11 @@ export PERL_BADLANG=0
 export PERL5LIB="~/lib/perl/lib:./lib:$PERL5LIB"
 [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
+if [ -d "$HOME/.plenv" ]; then
+    export PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
+
 # node
 [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
