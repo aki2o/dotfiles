@@ -109,6 +109,7 @@ fi
 alias e="emacsclient"
 
 export LANG=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
 export PATH=~/bin:${PATH}
 export TMP=/tmp
 export EDITOR=emacsclient
