@@ -1,3 +1,16 @@
+# include
+[ -f "$HOME/.bash-myfunc" ] && source "$HOME/.bash-myfunc"
+
+OS="UNKNOWN"
+if [ "$(uname)" == "Darwin" ]; then
+    OS="mac"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    OS="linux"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    OS="cygwin"
+fi
+
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -119,14 +132,18 @@ alias mozc-config="/usr/lib/mozc/mozc_tool -mode=config_dialog"
 alias mozc-dict="/usr/lib/mozc/mozc_tool --mode=dictionary_tool"
 alias emacs="XMODIFIERS=@im=none emacs"
 
+# cask
+[ -d "$HOME/.cask/bin" ] && export PATH="$HOME/.cask/bin:$PATH"
+
 # gibo
-export PATH="$HOME/gibo:$PATH"
+[ -d "$HOME/gibo" ] && export PATH="$HOME/gibo:$PATH"
 
 # heroku
-export PATH="/usr/local/heroku/bin:$PATH"
+[ -d "/usr/local/heroku/bin" ] && export PATH="/usr/local/heroku/bin:$PATH"
 
 # direnv
 [ "`which direnv`" != "" ] && eval "$(direnv hook bash)"
+export DIRENV_LOG_FORMAT=
 
 # perl
 export PERL_BADLANG=0
@@ -143,7 +160,7 @@ fi
 
 # node
 [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
+[ -d "$HOME/.nodebrew/current/bin" ] && export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 # ruby
 if [ -d "$HOME/.rbenv" ]; then
@@ -160,23 +177,22 @@ fi
 
 # go
 export GOPATH="$HOME/.go"
-export PATH="${GOPATH}/bin:$PATH"
+[ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
 if [ -d "$HOME/.goenv" ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
 fi
 
-# include
-[ -f "$HOME/.bash-myfunc" ] && source "$HOME/.bash-myfunc"
-
-OS="UNKNOWN"
-if [ "$(uname)" == "Darwin" ]; then
-    OS="mac"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    OS="linux"
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    OS="cygwin"
+# Android SDK
+if [ "$OS" = "mac" ]; then
+    [ -d "$HOME/Library/Android/sdk/platform-tools" ] && export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 fi
 
+# dash
+dash () {
+    open dash://$1
+}
+
+# include for OS
 [ -f "$HOME/.bashrc_${OS}" ] && source "$HOME/.bashrc_${OS}"
 
