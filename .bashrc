@@ -120,6 +120,7 @@ fi
 
 
 alias e="emacsclient"
+alias tf="terraform"
 
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
@@ -172,6 +173,7 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 if [ -d "$PYENV_ROOT" ]; then
     export PATH="${PYENV_ROOT}/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
     eval "$(pyenv init -)"
 fi
 
@@ -190,7 +192,7 @@ fi
 
 # dash
 dash () {
-    open dash://$1
+    open dash-plugin://$1
 }
 
 # include for OS
