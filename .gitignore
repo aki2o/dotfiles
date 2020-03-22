@@ -1,5 +1,6 @@
 /vendor/bundle_bin/
 .tern-port
+.tern-project
 .meghanada
 
 
