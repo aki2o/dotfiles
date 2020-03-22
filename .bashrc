@@ -178,12 +178,12 @@ if [ -d "$PYENV_ROOT" ]; then
 fi
 
 # go
-export GOPATH="$HOME/.go"
-[ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
 if [ -d "$HOME/.goenv" ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
 fi
+[ "$GOPATH" = "" ] && export GOPATH="$HOME/.go"
+[ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
 
 # Android SDK
 if [ "$OS" = "mac" ]; then
