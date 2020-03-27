@@ -1,0 +1,120 @@
+{
+  "title": "Dash",
+  "rules": [
+    {
+      "description": "Vimium like scroll on Dash",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "j" },
+          "to": [{ "key_code": "down_arrow" }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "k" },
+          "to": [{ "key_code": "up_arrow" }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "j", "modifiers": { "mandatory": ["shift"] } },
+          "to": [{ "key_code": "down_arrow", "modifiers": ["fn"] }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "k", "modifiers": { "mandatory": ["shift"] } },
+          "to": [{ "key_code": "up_arrow", "modifiers": ["fn"] }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        }
+      ]
+    },
+    {
+      "description": "Vimium like history on Dash",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "h", "modifiers": { "mandatory": ["shift"] } },
+          "to": [
+            { "key_code": "f2", "modifiers": ["control"] },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "down_arrow" },
+            { "key_code": "down_arrow" },
+            { "key_code": "return_or_enter" }
+          ],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "l", "modifiers": { "mandatory": ["shift"] } },
+          "to": [
+            { "key_code": "f2", "modifiers": ["control"] },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "right_arrow" },
+            { "key_code": "down_arrow" },
+            { "key_code": "down_arrow" },
+            { "key_code": "down_arrow" },
+            { "key_code": "return_or_enter" }
+          ],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        }
+      ]
+    },
+    {
+      "description": "Vimium like tab on Dash",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "period", "modifiers": { "mandatory": ["control"] } },
+          "to": [{ "key_code": "right_arrow", "modifiers": ["option", "command"] }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "comma", "modifiers": { "mandatory": ["control"] } },
+          "to": [{ "key_code": "left_arrow", "modifiers": ["option", "command"] }],
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        }
+      ]
+    },
+    {
+      "description": "Vimium like input on Dash",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "i" },
+          "to": [{ "key_code": "l", "modifiers": ["command"] }],
+          "conditions": [
+            { "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] },
+            { "type": "variable_if", "name": "g pressed", "value": 1 }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "g" },
+          "to": [
+            { "key_code": "g" },
+            { "set_variable": { "name": "g pressed", "value": 1 } }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              { "set_variable": { "name": "g pressed", "value": 0 } }
+            ],
+            "to_if_canceled": [
+              { "set_variable": { "name": "g pressed", "value": 0 } }
+            ]
+          },
+          "conditions": [{ "type": "frontmost_application_if", "bundle_identifiers": ["^com\\.kapeli\\.dashdoc"] }]
+        }
+      ]
+    }
+  ]
+}
