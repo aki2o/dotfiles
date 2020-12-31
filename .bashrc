@@ -186,6 +186,12 @@ fi
 [ "$GOPATH" = "" ] && export GOPATH="$HOME/.go"
 [ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
 
+# rust
+if [ -d "$HOME/.cargo" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+    source "$HOME/.cargo/env"
+fi
+
 # Android SDK
 if [ "$OS" = "mac" ]; then
     [ -d "$HOME/Library/Android/sdk/platform-tools" ] && export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
