@@ -133,6 +133,12 @@ alias mozc-config="/usr/lib/mozc/mozc_tool -mode=config_dialog"
 alias mozc-dict="/usr/lib/mozc/mozc_tool --mode=dictionary_tool"
 alias emacs="XMODIFIERS=@im=none emacs"
 
+# Homebrew
+if [ -d "/opt/homebrew" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export HOMEBREW_CACHE="/opt/homebrew/cache"
+fi
+
 # cask
 [ -d "$HOME/.cask/bin" ] && export PATH="$HOME/.cask/bin:$PATH"
 
