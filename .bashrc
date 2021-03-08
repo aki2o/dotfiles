@@ -191,6 +191,8 @@ if [ -d "$HOME/.goenv" ]; then
 fi
 [ "$GOPATH" = "" ] && export GOPATH="$HOME/.go"
 [ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
+[ -d "${GOROOT}/bin" ] && export PATH="${GOROOT}/bin:$PATH"
+export GO111MODULE=on
 
 # rust
 if [ -d "$HOME/.cargo" ]; then
