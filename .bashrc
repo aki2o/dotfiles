@@ -186,12 +186,9 @@ fi
 
 # go
 if [ -d "$HOME/.goenv" ]; then
-    export PATH="$HOME/.goenv/bin:$PATH"
+    export PATH="$HOME/.goenv/shims:$PATH"
     eval "$(goenv init -)"
 fi
-[ "$GOPATH" = "" ] && export GOPATH="$HOME/.go"
-[ -d "${GOPATH}/bin" ] && export PATH="${GOPATH}/bin:$PATH"
-[ -d "${GOROOT}/bin" ] && export PATH="${GOROOT}/bin:$PATH"
 export GO111MODULE=on
 
 # rust
