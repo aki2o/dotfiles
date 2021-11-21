@@ -1,0 +1,20 @@
+[user]
+	name = Hiroaki Otsu
+	email = ootsuhiroaki@gmail.com
+[github]
+	user = aki2o
+[core]
+	excludesfile = ~/.gitignore_global
+[credential]
+	helper = cache
+	helper = cache
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[alias]
+    stash-find = !"git fsck --unreachable | awk '/commit/ {print $3}' | xargs git log --merges --no-walk --grep=WIP --all-match"
+    stash-pick = cherry-pick -n -m1
+[merge]
+	ff = false
+#    tool = ediff
+# [mergetool "ediff"]
+#     cmd = emacsclient -c -a \"\"  --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
