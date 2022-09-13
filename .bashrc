@@ -135,8 +135,7 @@ alias emacs="XMODIFIERS=@im=none emacs"
 
 # Homebrew
 if [ -d "/opt/homebrew" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    export HOMEBREW_CACHE="/opt/homebrew/cache"
+    eval "$(/opr/homebrew/bin/brew shellenv)"
 fi
 
 # cask
@@ -151,6 +150,11 @@ fi
 # direnv
 [ "`which direnv`" != "" ] && eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=
+
+# asdf
+if [ "$OS" = "mac" ]; then
+    [ -f $(brew --prefix asdf)/asdf.sh ] && source $(brew --prefix asdf)/asdf.sh
+fi
 
 # perl
 export PERL_BADLANG=0
