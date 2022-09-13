@@ -135,7 +135,7 @@ alias emacs="XMODIFIERS=@im=none emacs"
 
 # Homebrew
 if [ -d "/opt/homebrew" ]; then
-    eval "$(/opr/homebrew/bin/brew shellenv)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # cask
