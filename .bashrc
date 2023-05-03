@@ -156,6 +156,11 @@ if [ "$OS" = "mac" ]; then
     [ -f $(brew --prefix asdf)/asdf.sh ] && source $(brew --prefix asdf)/asdf.sh
 fi
 
+# anyenv
+if [ "`which anyenv`" != "" ]; then
+    eval "$(anyenv init -)"
+fi
+
 # perl
 export PERL_BADLANG=0
 
