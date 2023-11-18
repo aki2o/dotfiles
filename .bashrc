@@ -206,6 +206,11 @@ if [ -d "$HOME/.cargo" ]; then
     source "$HOME/.cargo/env"
 fi
 
+# krew
+if [ -d "$HOME/.krew/bin" -o "$KREW_ROOT" != "" ]; then
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
 # Android SDK
 if [ "$OS" = "mac" ]; then
     [ -d "$HOME/Library/Android/sdk/platform-tools" ] && export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
