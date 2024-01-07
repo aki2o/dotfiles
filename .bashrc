@@ -176,6 +176,7 @@ fi
 
 # node
 [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
+[ -d "$HOME/.nodenv" ] && eval "$(nodenv init -)"
 [ -d "$HOME/.nodebrew/current/bin" ] && export PATH="$HOME/.nodebrew/current/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
 
