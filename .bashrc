@@ -193,6 +193,11 @@ if [ -d "$PYENV_ROOT" ]; then
     eval "$(pyenv init -)"
 fi
 
+# nim
+if [ -d "$HOME/.nimble" ]; then
+    export PATH="$HOME/.nimble/bin:$PATH"
+fi
+
 # go
 if [ -d "$HOME/.goenv" ]; then
     export PATH="$HOME/.goenv/shims:$PATH"
