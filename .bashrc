@@ -136,6 +136,7 @@ alias emacs="XMODIFIERS=@im=none emacs"
 # Homebrew
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 fi
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
@@ -155,12 +156,7 @@ export DIRENV_LOG_FORMAT=
 
 # asdf
 if [ "$OS" = "mac" ]; then
-    [ -f $(brew --prefix asdf)/asdf.sh ] && source $(brew --prefix asdf)/asdf.sh
-fi
-
-# anyenv
-if [ "`which anyenv`" != "" ]; then
-    eval "$(anyenv init -)"
+    [ -f $(brew --prefix asdf)/asdf.sh ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
 # perl
