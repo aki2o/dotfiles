@@ -159,49 +159,12 @@ if [ "$OS" = "mac" ]; then
     [ -f $(brew --prefix asdf)/asdf.sh ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
-# perl
-export PERL_BADLANG=0
-
-if [ -d "$HOME/.plenv" ]; then
-    export PATH="$HOME/.plenv/bin:$PATH"
-    eval "$(plenv init -)"
-elif [ -f "$HOME/perl5/perlbrew/etc/bashrc" ]; then
-    source "$HOME/perl5/perlbrew/etc/bashrc"
-else
-    export PERL_CPANM_OPT="--local-lib=~/perl5"
-    export PERL5LIB="~/perl5/lib/perl5:$PERL5LIB"
-fi
-
-# node
-[ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
-[ -d "$HOME/.nodenv" ] && eval "$(nodenv init -)"
-[ -d "$HOME/.nodebrew/current/bin" ] && export PATH="$HOME/.nodebrew/current/bin:$PATH"
-export PATH="./node_modules/.bin:$PATH"
-
-# ruby
-if [ -d "$HOME/.rbenv" ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
-
-# python
-export PYENV_ROOT="$HOME/.pyenv"
-if [ -d "$PYENV_ROOT" ]; then
-    export PATH="${PYENV_ROOT}/bin:$PATH"
-    export PATH="$HOME/.local/bin:$PATH"
-    eval "$(pyenv init -)"
-fi
-
 # nim
 if [ -d "$HOME/.nimble" ]; then
     export PATH="$HOME/.nimble/bin:$PATH"
 fi
 
 # go
-if [ -d "$HOME/.goenv" ]; then
-    export PATH="$HOME/.goenv/shims:$PATH"
-    eval "$(goenv init -)"
-fi
 export GO111MODULE=on
 
 # rust
