@@ -47,6 +47,7 @@ brew "remotemobprogramming/brew/mob"
 cask "alt-tab"
 cask "chromium"
 cask "kap"
+cask "karabiner-elements"
 cask "sequel-ace"
 mas "Slack", id: 803453959
 mas "Table Tool", id: 1122008420
