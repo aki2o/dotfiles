@@ -137,6 +137,8 @@ alias emacs="XMODIFIERS=@im=none emacs"
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
 # cask
 [ -d "$HOME/.cask/bin" ] && export PATH="$HOME/.cask/bin:$PATH"
