@@ -156,7 +156,10 @@ export DIRENV_LOG_FORMAT=
 
 # asdf
 if [ "$OS" = "mac" ]; then
-    [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
+    if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
+        source "$(brew --prefix asdf)/libexec/asdf.sh"
+        source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+    fi
 fi
 
 # nim
