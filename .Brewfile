@@ -50,6 +50,7 @@ brew "pinentry-mac"
 brew "python@3.11"
 brew "ripgrep"
 brew "rustup"
+brew "skktools"
 brew "socket_vmnet", restart_service: true
 brew "texinfo"
 brew "tfenv"
