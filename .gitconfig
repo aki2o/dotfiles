@@ -5,6 +5,7 @@
 	user = aki2o
 [core]
 	excludesfile = ~/.gitignore_global
+	ignorecase = false
 [credential]
 	helper = cache
 	helper = cache
