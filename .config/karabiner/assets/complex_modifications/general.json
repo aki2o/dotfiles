@@ -71,6 +71,12 @@
         },
         {
           "type": "basic",
+          "from": { "key_code": "d", "modifiers": { "mandatory": ["control"] } },
+          "to": [{ "key_code": "delete_or_backspace" }],
+          "conditions": [{ "type": "frontmost_application_unless", "bundle_identifiers": ["^org\\.gnu\\.Emacs"] }]
+        },
+        {
+          "type": "basic",
           "from": { "key_code": "s", "modifiers": { "mandatory": ["control"] } },
           "to": [{ "key_code": "f", "modifiers": ["command"] }],
           "conditions": [{ "type": "frontmost_application_unless", "bundle_identifiers": ["^org\\.gnu\\.Emacs"] }]
