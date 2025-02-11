@@ -34,7 +34,7 @@
       "manipulators": [
         {
           "type": "basic",
-          "from": { "key_code": "z", "modifiers": { "mandatory": ["control"] } },
+          "from": { "key_code": "z", "modifiers": { "mandatory": ["control", "shift"] } },
           "to": [
             { "key_code": "period", "modifiers": ["command"] },
             { "key_code": "f6" }
