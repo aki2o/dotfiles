@@ -156,9 +156,9 @@ export DIRENV_LOG_FORMAT=
 
 # asdf
 if [ "$OS" = "mac" ]; then
-    if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
-        source "$(brew --prefix asdf)/libexec/asdf.sh"
-        source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+    if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}" ]; then
+        export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+        source <(asdf completion bash)
     fi
 fi
 
