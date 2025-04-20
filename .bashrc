@@ -181,6 +181,9 @@ if [ -d "$HOME/.krew/bin" -o "$KREW_ROOT" != "" ]; then
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
+# uv
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
 # Android SDK
 if [ "$OS" = "mac" ]; then
     [ -d "$HOME/Library/Android/sdk/platform-tools" ] && export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
@@ -193,4 +196,3 @@ dash () {
 
 # include for OS
 [ -f "$HOME/.bashrc_${OS}" ] && source "$HOME/.bashrc_${OS}"
-
