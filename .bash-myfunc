@@ -15,3 +15,13 @@ function my-rand-base64() {
 function my-self-global-ip() {
     curl inet-ip.info
 }
+
+function my-lima-setup() {
+  local DIR="$(pwd)"
+  local NAME="$(basename "$DIR")"
+  local STAT="$(limactl ls $NAME -f '{{.Status}}' 2>/dev/null)"
+
+  # [ "$STAT" = "" ] && limactl create --name=$NAME --vm-type=vz --network=vzNAT template://docker
+  [ "$STAT" = "" ] && limactl create --name=$NAME --memory=32 --mount=${DIR}:w template://docker
+  [ "$STAT" != "Running" ] && limactl start $NAME
+}
