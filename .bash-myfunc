@@ -16,12 +16,19 @@ function my-self-global-ip() {
     curl inet-ip.info
 }
 
-function my-lima-setup() {
+function my-docker-setup() {
   local DIR="$(pwd)"
   local NAME="$(basename "$DIR")"
   local STAT="$(limactl ls $NAME -f '{{.Status}}' 2>/dev/null)"
+  local ROSETTA="$([ `uname -m` = "arm64" ] && echo "--rosetta")"
+  local DOCKER_PLUGIN_DIR="$HOME/.docker/cli-plugins"
 
+  [ -d "$DOCKER_PLUGIN_DIR" ] || mkdir -p "$DOCKER_PLUGIN_DIR"
+  [ -f "$DOCKER_PLUGIN_DIR/docker-compose" ] || ln -s "$(brew --prefix docker-compose)/bin/docker-compose" "$DOCKER_PLUGIN_DIR/docker-compose"
   # [ "$STAT" = "" ] && limactl create --name=$NAME --vm-type=vz --network=vzNAT template://docker
-  [ "$STAT" = "" ] && limactl create --name=$NAME --memory=32 --mount=${DIR}:w template://docker
+  [ "$STAT" = "" ] && limactl create --name=$NAME --memory=32 --mount=${DIR}:w $ROSETTA template://docker
   [ "$STAT" != "Running" ] && limactl start $NAME
+  # Setting DOCKER_HOST env is better than docker context use because docker context effects in global
+  [ "$(docker context ls -q | grep lima-$NAME)" = "" ] && docker context create lima-$NAME --docker "host=unix://$HOME/.lima/$NAME/sock/docker.sock"
+  docker context use lima-$NAME
 }
