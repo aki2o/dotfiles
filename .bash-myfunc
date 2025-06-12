@@ -25,10 +25,29 @@ function my-docker-setup() {
 
   [ -d "$DOCKER_PLUGIN_DIR" ] || mkdir -p "$DOCKER_PLUGIN_DIR"
   [ -f "$DOCKER_PLUGIN_DIR/docker-compose" ] || ln -s "$(brew --prefix docker-compose)/bin/docker-compose" "$DOCKER_PLUGIN_DIR/docker-compose"
-  # [ "$STAT" = "" ] && limactl create --name=$NAME --vm-type=vz --network=vzNAT template://docker
-  [ "$STAT" = "" ] && limactl create --name=$NAME --memory=32 --mount=${DIR}:w $ROSETTA template://docker
-  [ "$STAT" != "Running" ] && limactl start $NAME
-  # Setting DOCKER_HOST env is better than docker context use because docker context effects in global
+
+  if [ "$STAT" = "" ]; then
+    read -p "Input the number of CPU: " CPU
+    read -p "Input the number of Memory (GB): " MEMORY
+
+    limactl create --name=$NAME --cpus=$CPU --memory=$MEMORY --mount=${DIR}:w $ROSETTA template://docker
+    limactl start $NAME
+  elif [ "$STAT" = "Running" ]; then
+    limactl stop $NAME
+
+    echo ""
+    read -p "Input the number of CPU: " CPU
+    read -p "Input the number of Memory (GB): " MEMORY
+
+    limactl edit $NAME --cpus=${CPU} --memory=${MEMORY}
+  else
+    limactl start $NAME
+  fi
+
   [ "$(docker context ls -q | grep lima-$NAME)" = "" ] && docker context create lima-$NAME --docker "host=unix://$HOME/.lima/$NAME/sock/docker.sock"
-  docker context use lima-$NAME
+  export DOCKER_CONTEXT=lima-$NAME
+
+  echo ""
+  echo "Done!"
+  limactl ls $NAME
 }
