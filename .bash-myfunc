@@ -32,16 +32,16 @@ function my-docker-setup() {
 
     limactl create --name=$NAME --cpus=$CPU --memory=$MEMORY --mount=${DIR}:w $ROSETTA template://docker
     limactl start $NAME
-  elif [ "$STAT" = "Running" ]; then
-    limactl stop $NAME
+  elif [ "$STAT" != "Running" ]; then
+    read -p "Edit lima vm? (y/N): " DO_EDIT
+    if [ "$DO_EDIT" = "y" ]; then
+      read -p "Input the number of CPU: " CPU
+      read -p "Input the number of Memory (GB): " MEMORY
 
-    echo ""
-    read -p "Input the number of CPU: " CPU
-    read -p "Input the number of Memory (GB): " MEMORY
-
-    limactl edit $NAME --cpus=${CPU} --memory=${MEMORY}
-  else
-    limactl start $NAME
+      limactl edit $NAME --cpus=${CPU} --memory=${MEMORY}
+    else
+      limactl start $NAME
+    fi
   fi
 
   [ "$(docker context ls -q | grep lima-$NAME)" = "" ] && docker context create lima-$NAME --docker "host=unix://$HOME/.lima/$NAME/sock/docker.sock"
