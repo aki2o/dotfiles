@@ -184,6 +184,11 @@ fi
 # uv
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
+# claude
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Android SDK
 if [ "$OS" = "mac" ]; then
     [ -d "$HOME/Library/Android/sdk/platform-tools" ] && export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
