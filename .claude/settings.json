@@ -1,6 +1,10 @@
 {
   "model": "claude-sonnet-4-6",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://headroom.test.musubu.co.in"
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true
-  }
+  },
+  "theme": "dark"
 }
