@@ -1,10 +1,47 @@
 {
-  "model": "claude-sonnet-4-6",
   "env": {
     "ANTHROPIC_BASE_URL": "https://headroom.test.musubu.co.in"
   },
+  "model": "claude-sonnet-5",
+  "permissions": {
+    "allow": [
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(echo *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(awk *)",
+      "Bash(for *)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(gh api *)",
+      "Bash(npx tsc*)",
+      "Bash(npm test*)",
+      "Bash(pnpm tsc*)",
+      "Bash(pnpm test*)",
+      "Bash(pytest)",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(git push *)",
+      "Bash(*DROP TABLE*)",
+      "Read(*.env)",
+      "Read(*.env.*)"
+    ],
+    "ask": [
+      "Write(./package.json)"
+    ]
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true
+  },
+  "skillOverrides": {
+    "update-config": "off"
   },
   "theme": "dark"
 }
