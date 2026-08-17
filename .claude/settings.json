@@ -24,7 +24,10 @@
       "Bash(pnpm tsc*)",
       "Bash(pnpm test*)",
       "Bash(pytest)",
-      "WebFetch(domain:github.com)"
+      "Bash(gcloud logging read *)",
+      "Bash(bq show *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [
       "Bash(rm -rf*)",
