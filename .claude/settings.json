@@ -2,7 +2,6 @@
   "env": {
     "ANTHROPIC_BASE_URL": "https://headroom.test.musubu.co.in"
   },
-  "model": "claude-sonnet-5",
   "permissions": {
     "allow": [
       "Bash(ls *)",
@@ -40,11 +39,11 @@
       "Write(./package.json)"
     ]
   },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
-  },
   "skillOverrides": {
     "update-config": "off"
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
   },
   "theme": "dark"
 }
