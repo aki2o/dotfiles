@@ -21,6 +21,7 @@
       "Bash(git log:*)",
       "Bash(git show:*)",
       "Bash(gh api:*)",
+      "Bash(gh pr view:*)",
       "Bash(npx tsc*)",
       "Bash(npm test*)",
       "Bash(pnpm tsc*)",
@@ -28,6 +29,7 @@
       "Bash(pytest)",
       "Bash(gcloud logging read:*)",
       "Bash(bq show:*)",
+      "WebFetch(domain:docs.cloud.google.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)"
     ],
