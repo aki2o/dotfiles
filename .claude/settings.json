@@ -34,11 +34,11 @@
       "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [
-      "Bash(rm -rf*)",
       "Bash(git push:*)",
-      "Bash(*DROP TABLE*)",
-      "Read(*.env)",
-      "Read(*.env.*)"
+      "Read(.ssh/id_*)",
+      "Read(.aws/*)",
+      "Read(.env)",
+      "Read(.env.*)"
     ],
     "ask": [
       "Write(./package.json)"
